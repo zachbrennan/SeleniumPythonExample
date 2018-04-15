@@ -1,8 +1,8 @@
 # SeleniumPythonExample
 
 ### Requirements
-    * Selenium
-        * ```pip install selenium```
+* Selenium
+    * ```pip install selenium```
 ### Running the Tests
 
 ### Expected Output
