@@ -8,7 +8,7 @@ This repository will serve as an example of how Selenium works in conjunction wi
     * This example uses version 2.7.12
 * Selenium
     * ```pip install selenium```
-    * If ```pip``` is not installed, run ```apt-get install python-pip (for Ubuntu/Debian systems)
+    * If ```pip``` is not installed, run ```apt-get install python-pip (for Ubuntu/Debian systems)```
 * Geckodriver
    * Good install guide/script can be found [here](https://askubuntu.com/questions/870530/how-to-install-geckodriver-in-ubuntu)
     
