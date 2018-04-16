@@ -20,9 +20,11 @@ class SelPyTest(unittest.TestCase):
         driver = self.driver
         driver.get("https://www.google.com")
 
+        #Types a search query into the box
         searchBar = driver.find_element_by_name("q")
         searchBar.send_keys("python")
 
+        #Presses "Google Search" button
         searchButton = driver.find_element_by_name("btnK")
         searchButton.click()
 
@@ -33,30 +35,42 @@ class SelPyTest(unittest.TestCase):
         driver = self.driver
         driver.get("https://www.google.com")
 
+        #Types a search query into the box
         searchBar = driver.find_element_by_name("q")
         searchBar.send_keys("python")
         
+        #Presses the "I'm Feeling Lucky" button
         luckyButton = driver.find_element_by_name("btnI")
         luckyButton.click()
 
         assert(driver.title == "Welcome to Python.org")
 
+    #Tests a file that is local
     def test_local_site(self):
         driver = self.driver
-        my_path = os.path.abspath(os.path.dirname(__file__))
-        path = my_path + "/web/index.html"
+
+        #Builds the absolute path to the current location
+        absolutePath = os.path.abspath(os.path.dirname(__file__))
+
+        #Creates the full path to the file
+        fullPath = absolutePath + "/web/index.html"
         
-        driver.get("file://" + path)
+        #Opens the file with the web driver, instead of opening a web page
+        driver.get("file://" + fullPath)
     
+        #Click the "+" button
         plusButton = driver.find_element_by_id("controls1plus")
         plusButton.click()
 
+        #Type "TEST" into the textbox
         addTextBox = driver.find_element_by_id("itemtoadd")
         addTextBox.send_keys("TEST")
 
+        #Click the "Add" button
         addButton = driver.find_element_by_id("addbutton")
         addButton.click()
 
+        #Ensure the created item starts with the entered text
         assert(driver.find_element_by_id("item1").text.startswith("TEST"))
 
     #Runs once, at end of execution 
