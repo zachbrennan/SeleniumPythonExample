@@ -1,4 +1,6 @@
 import unittest
+import time
+import os.path
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 
@@ -9,7 +11,7 @@ class SelPyTest(unittest.TestCase):
         options = Options()
         
         #Comment this line out if you want to see it execute
-#        options.add_argument("--headless")
+        options.add_argument("--headless")
         
         self.driver = webdriver.Firefox(firefox_options=options)
 
@@ -41,17 +43,21 @@ class SelPyTest(unittest.TestCase):
 
     def test_local_site(self):
         driver = self.driver
-        driver.get("file://index.html")
-    
-        print driver.title
+        my_path = os.path.abspath(os.path.dirname(__file__))
+        path = my_path + "/web/index.html"
         
-#        plusButton = driver.find_element_by_id("controls1plus")
-#        plusButton.click()
+        driver.get("file://" + path)
+    
+        plusButton = driver.find_element_by_id("controls1plus")
+        plusButton.click()
 
-#        addTextBox = driver.find_element_by_id("itemtoadd")
-#        addTextBox.send_keys("TEST")
+        addTextBox = driver.find_element_by_id("itemtoadd")
+        addTextBox.send_keys("TEST")
 
-#        print driver.find_element_by_id("item1").text
+        addButton = driver.find_element_by_id("addbutton")
+        addButton.click()
+
+        assert(driver.find_element_by_id("item1").text.startswith("TEST"))
 
     #Runs once, at end of execution 
     def tearDown(self):
